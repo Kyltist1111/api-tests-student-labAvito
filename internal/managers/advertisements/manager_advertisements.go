@@ -14,7 +14,7 @@ import (
 func GetAdvertisementsList(t *testing.T, token, text string) models.AdvertisementsList {
 
 	raw := advertisementsClient.HttpGetAdvertisements(t, token, text)
-	defer raw.Body.Close()
+	defer func() { _ = raw.Body.Close() }()
 
 	body, err := io.ReadAll(raw.Body)
 	require.NoError(t, err)

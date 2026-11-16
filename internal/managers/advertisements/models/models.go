@@ -5,7 +5,8 @@ type AdvertisementsList struct {
 }
 
 type Advertisement struct {
-	ID    string  `json:"id"`
-	Title string  `json:"title"`
-	Price float64 `json:"price"`
+	ID     string  `json:"id"`
+	Title  string  `json:"title"`
+	Price  float64 `json:"price"`
+	UserID string  `json:"user_id"`
 }

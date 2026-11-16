@@ -22,7 +22,7 @@ func Login(t *testing.T, username, password string) models.LoginOkResponse {
 	}
 
 	loginRawResponse := auth.HttpPostAuthLogin(t, request)
-	defer loginRawResponse.Body.Close()
+	defer func() { _ = loginRawResponse.Body.Close() }()
 
 	respArray, errResponse := io.ReadAll(loginRawResponse.Body)
 	require.NoError(t, errResponse)

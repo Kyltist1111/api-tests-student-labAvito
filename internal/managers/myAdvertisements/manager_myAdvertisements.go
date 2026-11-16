@@ -12,7 +12,7 @@ import (
 // GetMyAdvertisements возвращает список объявлений авторизованного пользователя и проверяет ожидаемый статус-код
 func GetMyAdvertisements(t *testing.T, token string, expectedStatusCode int, limit int) string {
 	myAdvertisementsRawResponse := myAdvertisements.HttpGetMyAdvertisements(t, token, limit)
-	defer myAdvertisementsRawResponse.Body.Close()
+	defer func() { _ = myAdvertisementsRawResponse.Body.Close() }()
 
 	require.Equalf(t, expectedStatusCode, myAdvertisementsRawResponse.StatusCode,
 		"HTTP status code должен быть %d", expectedStatusCode)
