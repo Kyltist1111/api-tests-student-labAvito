@@ -28,6 +28,7 @@ type SearchTestSuite struct {
 }
 
 func (s *SearchTestSuite) SetupSuite() {
+	utils.LoadEnv()
 	require.NotEmpty(s.T(), existingAdTitle, "Задайте existingAdTitle - название вашего объявления")
 	require.NotEmpty(s.T(), searchBeginning, "Задайте searchBeginning")
 	require.NotEmpty(s.T(), searchMiddle, "Задайте searchMiddle")
